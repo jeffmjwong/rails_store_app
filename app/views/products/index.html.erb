@@ -2,7 +2,7 @@
 <p id="notice"><%= notice %></p>
 
 <% if !current_user.admin %>
-  <%= link_to 'Go To Cart', cart_path(current_user.cart) %>
+  <%= link_to 'Go To Cart', purchases_path %>
 <% end %>
 
 <h1>Products</h1>
