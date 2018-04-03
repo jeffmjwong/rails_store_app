@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.admin == nil ? 'false' : "#{user.admin}" %></td>
+        <td><%= user.enable ? 'Enable' : 'Disable' %></td>
+        <% if !user.admin %>
+          <td><%= link_to 'Show User Cart', user %></td>
+          <td><%= link_to 'Edit User Status', edit_user_path(user) %></td>
+          <td><%= link_to 'Delete User Account', user, method: :delete,
+                    data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Manage Products', products_path %>
