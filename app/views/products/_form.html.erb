@@ -12,8 +12,28 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :photo %>
+    <%= form.file_field :photo, id: :product_photo %>
+  </div>
+
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name, id: :product_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :product_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stockvolume, 'Stock Volume' %>
+    <%= form.text_field :stockvolume, id: :product_stockvolume %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unitprice, 'Unit Price' %>
+    <%= form.text_field :unitprice, id: :product_unitprice %>
   </div>
 
   <div class="actions">
