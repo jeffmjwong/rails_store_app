@@ -1,9 +1,32 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <%= image_tag @product.photo_url(:medium) %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @product.name %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Stock Volume:</strong>
+  <%= @product.stockvolume %>
+</p>
+
+<p>
+  <strong>Unit Price:</strong>
+  <%= @product.unitprice %>
+</p>
+
+<% if current_user.admin %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+<% else %>
+  <%= link_to 'Add to Cart' %> |
+<% end %>
 <%= link_to 'Back', products_path %>
