@@ -27,6 +27,6 @@
 <% if current_user.admin %>
   <%= link_to 'Edit', edit_product_path(@product) %> |
 <% else %>
-  <%= link_to 'Add to Cart' %> |
+  <%= link_to 'Add to Cart', purchases_path(product_id: @product.id, cart_id: @cart.id), method: :post %> |
 <% end %>
 <%= link_to 'Back', products_path %>
