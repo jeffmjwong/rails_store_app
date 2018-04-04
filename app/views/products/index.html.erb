@@ -1,8 +1,9 @@
-<% if !current_user.enable %>
-  <%= render 'users/disable' %>
-<% else %>
 
 <p id="notice"><%= notice %></p>
+
+<% if !current_user.admin %>
+  <%= link_to 'Go To Cart', cart_path(current_user.cart) %>
+<% end %>
 
 <h1>Products</h1>
 
@@ -43,6 +44,4 @@
 <% if current_user.admin %>
   <%= link_to 'New Product', new_product_path %><br><br>
   <%= link_to 'Manage Users', users_path %>
-<% end %>
-
 <% end %>

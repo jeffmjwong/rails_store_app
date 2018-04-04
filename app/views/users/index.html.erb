@@ -19,7 +19,7 @@
         <td><%= user.admin == nil ? 'false' : "#{user.admin}" %></td>
         <td><%= user.enable ? 'Enable' : 'Disable' %></td>
         <% if !user.admin && current_user.admin %>
-          <td><%= link_to 'Show User Cart', user %></td>
+          <td><%= link_to 'Show User Cart', cart_path(user.cart) %></td>
           <td><%= link_to 'Edit User Status', edit_user_path(user) %></td>
           <td><%= link_to 'Delete User Account', user, method: :delete,
                     data: { confirm: 'Are you sure?' } %></td>

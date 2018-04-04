@@ -1,0 +1,15 @@
+<% if !current_user.enable %>
+  <%= render 'users/disable' %>
+<% else %>
+
+<h1>Welcome home!</h1>
+
+
+<% if current_user.admin %>
+  <%= link_to 'Manage Products', products_path %><br><br>
+  <%= link_to 'Manage Users', users_path %>
+<% else %>
+  <%= link_to 'Start Shopping', products_path %>
+<% end %>
+
+<% end %>
