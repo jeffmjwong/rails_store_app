@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :check_admin, only: [:show]
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   # GET /carts
@@ -70,5 +71,11 @@ class CartsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
       params.require(:cart).permit(:user_id)
+    end
+
+    def check_admin
+      if !current_user.admin
+        redirect_to purchases_path
+      end
     end
 end

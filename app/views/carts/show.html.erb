@@ -19,18 +19,17 @@
   </thead>
 
   <tbody>
-      <% total = 0 %>
-    <% @cart.purchases.each do |purchase| %>
+    <% total = 0 %>
+    <% @cart.products.each do |product| %>
       <tr>
-        <td><%= image_tag purchase.product.photo_url(:thumb) %></td>
-        <td><%= purchase.product.name %></td>
-        <td>$<%= purchase.product.unitprice %></td>
+        <td><%= image_tag product.photo_url(:thumb) %></td>
+        <td><%= product.name %></td>
+        <td>$<%= product.unitprice %></td>
       </tr>
-      <% total += purchase.product.unitprice %>
+      <% total += product.unitprice %>
     <% end %>
   </tbody>
 </table>
-<h3>Total: $<%= total %></h3>
+<h3>Total: $<%= sprintf('%0.2f', total) %></h3>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<%= link_to 'Back', users_path %>

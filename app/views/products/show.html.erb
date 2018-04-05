@@ -25,6 +25,11 @@
 </p>
 
 <% if current_user.admin %>
+  <p>
+    <strong>Visible:</strong>
+    <%= @product.visibility %>
+  </p>
+
   <%= link_to 'Edit', edit_product_path(@product) %> |
 <% else %>
   <%= link_to 'Add to Cart', purchases_path(product_id: @product.id, cart_id: @cart.id), method: :post %> |

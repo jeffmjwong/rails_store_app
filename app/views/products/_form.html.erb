@@ -36,6 +36,11 @@
     <%= form.text_field :unitprice, id: :product_unitprice %>
   </div>
 
+  <div class="field">
+    <%= form.label :visibility, 'Visible' %>
+    <%= form.check_box :visibility, id: :product_visibility %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

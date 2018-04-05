@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  before_action :check_admin, only: [:show, :new, :edit]
   before_action :set_purchase, only: [:show, :edit, :update, :destroy]
 
   # GET /purchases
@@ -70,5 +71,11 @@ class PurchasesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def purchase_params
       params.permit(:cart_id, :product_id)
+    end
+
+    def check_admin
+      if !current_user.admin
+        redirect_to purchases_path
+      end
     end
 end

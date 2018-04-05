@@ -11,30 +11,41 @@
   <thead>
     <tr>
       <th>Photo</th>
+      <th colspan="1"></th>
       <th>Name</th>
+      <th colspan="1"></th>
       <th>Description</th>
-      <th>Stock Volume</th>
+      <th colspan="1"></th>
+      <th>Stock</th>
+      <th colspan="1"></th>
       <th>Unit Price</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @products.each do |product| %>
-      <tr>
-        <td><%= image_tag product.photo_url(:thumb) %><td>
-        <td><%= product.name %></td>
-        <td><%= product.description %></td>
-        <td><%= product.stockvolume %></td>
-        <td><%= product.unitprice %></td>
-        <td><%= link_to 'Show', product %></td>
-        <% if current_user.admin %>
+      <% if current_user.admin %>
+        <tr>
+          <td><%= image_tag product.photo_url(:thumb) %><td>
+          <td><%= product.name %><td>
+          <td><%= product.description %><td>
+          <td><%= product.stockvolume %><td>
+          <td><%= product.unitprice %><td>
+          <td><%= link_to 'Show', product %></td>
           <td><%= link_to 'Edit', edit_product_path(product) %></td>
           <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+        </tr>
+      <% elsif product.visibility %>
+        <tr>
+          <td><%= image_tag product.photo_url(:thumb) %><td>
+          <td><%= product.name %><td>
+          <td><%= product.description %><td>
+          <td><%= product.stockvolume %><td>
+          <td><%= product.unitprice %><td>
+          <td><%= link_to 'Show', product %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
@@ -42,6 +53,6 @@
 <br>
 
 <% if current_user.admin %>
-  <%= link_to 'New Product', new_product_path %><br><br>
+  <%= link_to 'Add New Product', new_product_path %><br><br>
   <%= link_to 'Manage Users', users_path %>
 <% end %>

@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :check_admin, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
@@ -71,6 +72,12 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :photo, :description, :stockvolume, :unitprice)
+      params.require(:product).permit(:name, :photo, :description, :stockvolume, :unitprice, :visibility)
+    end
+
+    def check_admin
+      if !current_user.admin
+        redirect_to products_path
+      end
     end
 end
