@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
-  before_action :check_admin, only: [:show, :new, :edit]
+  before_action :check_admin, only: [:show, :new]
   before_action :set_purchase, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit]
 
   # GET /purchases
   # GET /purchases.json
@@ -79,6 +80,12 @@ class PurchasesController < ApplicationController
 
     def check_admin
       if !current_user.admin
+        redirect_to purchases_path
+      end
+    end
+
+    def check_user
+      if current_user != @purchase.cart.user
         redirect_to purchases_path
       end
     end
