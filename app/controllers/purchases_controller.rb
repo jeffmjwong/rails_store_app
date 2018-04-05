@@ -41,8 +41,8 @@ class PurchasesController < ApplicationController
   # PATCH/PUT /purchases/1.json
   def update
     respond_to do |format|
-      if @purchase.update(purchase_params)
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
+      if @purchase.update(update_params)
+        format.html { redirect_to purchases_path, notice: 'Purchase was successfully updated.' }
         format.json { render :show, status: :ok, location: @purchase }
       else
         format.html { render :edit }
@@ -68,7 +68,11 @@ class PurchasesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def update_params
+      params.require(:purchase).permit(:cart_id, :product_id, :quantity)
+    end
+
     def purchase_params
-      params.permit(:cart_id, :product_id)
+      params.permit(:cart_id, :product_id, :quantity)
     end
 end

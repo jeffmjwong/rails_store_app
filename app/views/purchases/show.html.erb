@@ -2,12 +2,17 @@
 
 <p>
   <strong>Cart:</strong>
-  <%= @purchase.cart %>
+  <%= @purchase.cart.id %>
 </p>
 
 <p>
   <strong>Product:</strong>
-  <%= @purchase.product %>
+  <%= @purchase.product.name %>
+</p>  
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @purchase.quantity %>
 </p>
 
 <%= link_to 'Edit', edit_purchase_path(@purchase) %> |

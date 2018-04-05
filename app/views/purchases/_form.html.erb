@@ -12,13 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :cart_id %>
-    <%= form.text_field :cart_id, id: :purchase_cart_id %>
+    <%= form.hidden_field :cart_id, id: :purchase_cart_id %>
   </div>
 
   <div class="field">
-    <%= form.label :product_id %>
-    <%= form.text_field :product_id, id: :purchase_product_id %>
+    <%= form.hidden_field :product_id, id: :purchase_product_id %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, id: :purchase_quantity %>
   </div>
 
   <div class="actions">
