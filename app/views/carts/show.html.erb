@@ -2,8 +2,35 @@
 
 <p>
   <strong>User:</strong>
-  <%= @cart.user %>
+  <%= @cart.user.email %>
 </p>
+
+<p>
+  <strong>Products in Cart:</strong>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <% total = 0 %>
+    <% @cart.purchases.each do |purchase| %>
+      <tr>
+        <td><%= image_tag purchase.product.photo_url(:thumb) %></td>
+        <td><%= purchase.product.name %></td>
+        <td>$<%= purchase.product.unitprice %></td>
+      </tr>
+      <% total += purchase.product.unitprice %>
+    <% end %>
+  </tbody>
+</table>
+<h3>Total: $<%= total %></h3>
 
 <%= link_to 'Edit', edit_cart_path(@cart) %> |
 <%= link_to 'Back', carts_path %>
