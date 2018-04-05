@@ -23,6 +23,7 @@ class PurchasesController < ApplicationController
     if Purchase.find_by(cart_id: @purchase.cart_id, product_id: @purchase.product_id) == nil
       respond_to do |format|
         if @purchase.save
+          update_stockvolume(@purchase, -1)
           format.html { redirect_to purchases_path, notice: 'Purchase was successfully created.' }
           format.json { render :show, status: :created, location: @purchase }
         else
@@ -33,19 +34,19 @@ class PurchasesController < ApplicationController
     else
       @purchase = Purchase.find_by(cart_id:@purchase.cart_id, product_id:@purchase.product_id)
       @purchase.quantity += 1
-
-      @product = Product.find(@purchase.product_id)
-      @product.stockvolume -= 1
-
-      @product.save
       @purchase.save
+
+      update_stockvolume(@purchase, -1)
+
       redirect_to purchases_path
     end
   end
 
   def update
     respond_to do |format|
+      old_quantity = @purchase.quantity
       if @purchase.update(update_params)
+        update_stockvolume(@purchase, old_quantity - @purchase.quantity)
         format.html { redirect_to purchases_path, notice: 'Purchase was successfully updated.' }
         format.json { render :show, status: :ok, location: @purchase }
       else
@@ -56,6 +57,7 @@ class PurchasesController < ApplicationController
   end
 
   def destroy
+    update_stockvolume(@purchase, @purchase.quantity)
     @purchase.destroy
     respond_to do |format|
       format.html { redirect_to purchases_url, notice: 'Purchase was successfully destroyed.' }
@@ -75,6 +77,12 @@ class PurchasesController < ApplicationController
 
     def purchase_params
       params.permit(:cart_id, :product_id, :quantity)
+    end
+
+    def update_stockvolume(purchase, quantity)
+      product = Product.find(purchase.product_id)
+      product.stockvolume = product.stockvolume + quantity
+      product.save
     end
 
     def check_admin
