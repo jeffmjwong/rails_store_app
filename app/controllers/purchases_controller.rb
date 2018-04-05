@@ -80,13 +80,13 @@ class PurchasesController < ApplicationController
 
     def check_admin
       if !current_user.admin
-        redirect_to purchases_path
+        redirect_to home_path_url
       end
     end
 
     def check_user
       if current_user != @purchase.cart.user
-        redirect_to purchases_path
+        redirect_to home_path_url
       end
     end
 end

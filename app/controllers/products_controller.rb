@@ -77,7 +77,7 @@ class ProductsController < ApplicationController
 
     def check_admin
       if !current_user.admin
-        redirect_to products_path
+        redirect_to home_path_url
       end
     end
 end

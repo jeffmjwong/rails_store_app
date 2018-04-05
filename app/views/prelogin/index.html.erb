@@ -1,0 +1,39 @@
+<h1>Welcome To Shaun Space Shop</h1>
+
+<br>
+
+<h2>Product List</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th colspan="1"></th>
+      <th>Name</th>
+      <th colspan="1"></th>
+      <th>Description</th>
+      <th colspan="1"></th>
+      <th>Unit Price</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <% if product.visibility %>
+        <tr>
+          <td><%= image_tag product.photo_url(:thumb) %><td>
+          <td><%= product.name %><td>
+          <td><%= product.description %><td>
+          <td><%= product.unitprice %><td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<% unless user_signed_in? %>
+  <%= link_to 'Please Login To Continue', home_path_url %>
+<% else %>
+  <%= link_to 'Main Products Page', products_path %>
+<% end %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :products
   devise_for :users
   resources :users, except: [:show, :new]
+  get '/home', to: 'home#index', as: 'home_path'
 
-  root to: 'home#index'
+  root to: 'prelogin#index'
 end

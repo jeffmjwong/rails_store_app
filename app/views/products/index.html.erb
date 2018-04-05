@@ -1,7 +1,8 @@
 
 <p id="notice"><%= notice %></p>
 
-<% if !current_user.admin %>
+
+<% if user_signed_in? && !current_user.admin %>
   <%= link_to 'Go To Cart', purchases_path %>
 <% end %>
 
@@ -25,7 +26,7 @@
 
   <tbody>
     <% @products.each do |product| %>
-      <% if current_user.admin %>
+      <% if user_signed_in? && current_user.admin %>
         <tr>
           <td><%= image_tag product.photo_url(:thumb) %><td>
           <td><%= product.name %><td>
@@ -52,7 +53,7 @@
 
 <br>
 
-<% if current_user.admin %>
+<% if user_signed_in? && current_user.admin %>
   <%= link_to 'Add New Product', new_product_path %><br><br>
   <%= link_to 'Manage Users', users_path %>
 <% end %>
