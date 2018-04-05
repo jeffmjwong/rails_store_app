@@ -8,7 +8,9 @@
       <th>Photo</th>
       <th>Product</th>
       <th>Price</th>
+      <th>Quantity</th>
       <th colspan="1"></th>
+      <th colspan="1"></th>      
     </tr>
   </thead>
 
@@ -19,6 +21,8 @@
         <td><%= image_tag purchase.product.photo_url(:thumb) %></td>
         <td><%= purchase.product.name %></td>
         <td>$<%= purchase.product.unitprice %></td>
+        <td><%= purchase.quantity %></td>
+        <td><%= link_to 'Update Quantity', edit_purchase_path(purchase) %></td>
         <td><%= link_to 'Remove', purchase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% total += purchase.product.unitprice %>
