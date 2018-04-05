@@ -1,39 +1,32 @@
-<h1>Welcome To Shaun Space Shop</h1>
+<div class="home-background-img-container">
+  <%= image_tag('background2.jpg') %>
+</div>
 
-<br>
+<div class="home-heading">
+  <h1>Welcome To Spinelli Space Shop</h1>
+</div>
 
-<h2>Product List</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Photo</th>
-      <th colspan="1"></th>
-      <th>Name</th>
-      <th colspan="1"></th>
-      <th>Description</th>
-      <th colspan="1"></th>
-      <th>Unit Price</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <% if product.visibility %>
-        <tr>
-          <td><%= image_tag product.photo_url(:thumb) %><td>
-          <td><%= product.name %><td>
-          <td><%= product.description %><td>
-          <td><%= product.unitprice %><td>
-        </tr>
+<div class="home-table-container">
+  <h2>Product List</h2>
+  <table>
+    <tbody>
+      <% @products.each do |product| %>
+        <% if product.visibility %>
+          <tr>
+            <td><%= image_tag product.photo_url(:homepage) %><td>
+            <td><%= product.name %><td>
+            <td>$<%= product.unitprice %><td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
 <% unless user_signed_in? %>
-  <%= link_to 'Please Login To Continue', home_path_url %>
+  <div class="home-login">
+    <%= link_to 'Login To Continue', home_path_url %>
+  </div>
 <% else %>
   <%= link_to 'Main Products Page', products_path %>
 <% end %>

@@ -1,3 +1,68 @@
 // Place all the styles related to the Prelogin controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.home-background-img-container img {
+  width: 100%;
+  height: auto;
+}
+
+.home-heading h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.home-table-container {
+  margin-top: 12em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-table-container h2 {
+  width: 100%;
+  font-size: 2rem;
+  margin-bottom: 2.5em;
+  display: flex;
+  justify-content: center;
+}
+
+.home-table-container table {
+  width: 70%;
+  padding: 1.5em;
+}
+
+.home-table-container td {
+  margin: 1em;
+}
+
+.home-login {
+  margin: 2em;
+  display: flex;
+  justify-content: center;
+}
+
+.home-login a {
+  color: teal;
+  padding: 0.75em;
+  border: 0.15em solid grey;
+  border-radius: 1.25em;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.home-login a:visited {
+  color: teal;
+}
+
+.home-login a:hover {
+  background-color: teal;
+  color: white;
+  border: 0.15em solid white;
+}
