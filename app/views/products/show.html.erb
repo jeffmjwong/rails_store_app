@@ -32,6 +32,6 @@
 
   <%= link_to 'Edit', edit_product_path(@product) %> |
 <% else %>
-  <%= link_to 'Add to Cart', purchases_path(product_id: @product.id, cart_id: @cart.id), method: :post %> |
+  <%= link_to 'Add to Cart', purchases_path(product_id: @product.id, cart_id: @cart.id, quantity: 1), method: :post %> |
 <% end %>
 <%= link_to 'Back', products_path %>
