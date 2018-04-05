@@ -27,15 +27,27 @@ class PurchasesController < ApplicationController
   # POST /purchases.json
   def create
     @purchase = Purchase.new(purchase_params)
-
-    respond_to do |format|
-      if @purchase.save
-        format.html { redirect_to purchases_path, notice: 'Purchase was successfully created.' }
-        format.json { render :show, status: :created, location: @purchase }
-      else
-        format.html { render :new }
-        format.json { render json: @purchase.errors, status: :unprocessable_entity }
+    # Check to see if item already exits in shopping cart
+    if Purchase.find_by(cart_id: @purchase.cart_id, product_id: @purchase.product_id) == nil
+      respond_to do |format|
+        if @purchase.save
+          format.html { redirect_to purchases_path, notice: 'Purchase was successfully created.' }
+          format.json { render :show, status: :created, location: @purchase }
+        else
+          format.html { render :new }
+          format.json { render json: @purchase.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      @purchase = Purchase.find_by(cart_id:@purchase.cart_id, product_id:@purchase.product_id)
+      @purchase.quantity += 1
+     
+      @product = Product.find(@purchase.product_id)
+      @product.stockvolume -= 1
+
+      @product.save
+      @purchase.save
+      redirect_to purchases_path
     end
   end
 
