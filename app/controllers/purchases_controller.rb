@@ -3,28 +3,20 @@ class PurchasesController < ApplicationController
   before_action :set_purchase, only: [:show, :edit, :update, :destroy]
   before_action :check_user, only: [:edit]
 
-  # GET /purchases
-  # GET /purchases.json
   def index
     @purchases = Purchase.where(:cart_id => current_user.cart.id)
   end
 
-  # GET /purchases/1
-  # GET /purchases/1.json
   def show
   end
 
-  # GET /purchases/new
   def new
     @purchase = Purchase.new
   end
 
-  # GET /purchases/1/edit
   def edit
   end
 
-  # POST /purchases
-  # POST /purchases.json
   def create
     @purchase = Purchase.new(purchase_params)
     # Check to see if item already exits in shopping cart
@@ -41,7 +33,7 @@ class PurchasesController < ApplicationController
     else
       @purchase = Purchase.find_by(cart_id:@purchase.cart_id, product_id:@purchase.product_id)
       @purchase.quantity += 1
-     
+
       @product = Product.find(@purchase.product_id)
       @product.stockvolume -= 1
 
@@ -51,8 +43,6 @@ class PurchasesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /purchases/1
-  # PATCH/PUT /purchases/1.json
   def update
     respond_to do |format|
       if @purchase.update(update_params)
@@ -65,8 +55,6 @@ class PurchasesController < ApplicationController
     end
   end
 
-  # DELETE /purchases/1
-  # DELETE /purchases/1.json
   def destroy
     @purchase.destroy
     respond_to do |format|
@@ -76,12 +64,11 @@ class PurchasesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_purchase
       @purchase = Purchase.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def update_params
       params.require(:purchase).permit(:cart_id, :product_id, :quantity)
     end
