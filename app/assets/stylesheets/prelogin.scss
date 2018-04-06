@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+body.prelogin_index {
+  margin: 0 !important;
+}
+
 * {
   font-family: 'Roboto', sans-serif;
 }
@@ -18,51 +22,66 @@
   text-align: center;
 }
 
-.home-table-container {
+.home-main-container {
   margin-top: 12em;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.home-table-container h2 {
-  width: 100%;
-  font-size: 2rem;
-  margin-bottom: 2.5em;
-  display: flex;
-  justify-content: center;
-}
-
-.home-table-container table {
-  width: 70%;
-  padding: 1.5em;
-}
-
-.home-table-container td {
-  margin: 1em;
+  .home-table-container {
+    width: 70%;
+    -webkit-box-shadow: 0 0.25em 0.6em 0 hsla(0, 0%, 0%, 0.2), 0 0.25em 1.25em 0 hsla(0, 0%, 0%, 0.19);
+          box-shadow: 0 0.25em 0.6em 0 hsla(0, 0%, 0%, 0.2), 0 0.25em 1.25em 0 hsla(0, 0%, 0%, 0.19);
+    div.home-table-title {
+      height: 5em;
+      font-size: 1.5rem;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      h2 {
+        width: 100%;
+        margin: 0;
+      }
+    }
+    ul.home-products-list {
+      background-color: hsla(0, 0%, 70%, 0.1);
+      list-style-type: none;
+      padding: 2em 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      li {
+        padding: 1em 2em;
+        text-align: center;
+      }
+    }
+    tr:nth-child(odd) {
+      background-color: hsla(0, 0%, 90%, 1);
+    }
+    td {
+      margin: 1em;
+    }
+  }
 }
 
 .home-login {
-  margin: 2em;
+  margin: 5em;
   display: flex;
   justify-content: center;
-}
-
-.home-login a {
-  color: teal;
-  padding: 0.75em;
-  border: 0.15em solid grey;
-  border-radius: 1.25em;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-
-.home-login a:visited {
-  color: teal;
-}
-
-.home-login a:hover {
-  background-color: teal;
-  color: white;
-  border: 0.15em solid white;
+  a {
+    color: teal;
+    padding: 0.75em;
+    border: 0.15em solid grey;
+    border-radius: 1.25em;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+  a:visited {
+    color: teal;
+  }
+  a:hover {
+    background-color: teal;
+    color: white;
+    border: 0.15em solid white;
+  }
 }

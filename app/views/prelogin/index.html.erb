@@ -6,27 +6,31 @@
   <h1>Welcome To Spinelli Space Shop</h1>
 </div>
 
-<div class="home-table-container">
-  <h2>Product List</h2>
-  <table>
-    <tbody>
+<div class="home-main-container">
+  <div class="home-table-container">
+    <div class="home-table-title">
+      <h2>Product List</h2>
+    </div>
+    <ul class="home-products-list">
       <% @products.each do |product| %>
         <% if product.visibility %>
-          <tr>
-            <td><%= image_tag product.photo_url(:homepage) %><td>
-            <td><%= product.name %><td>
-            <td>$<%= product.unitprice %><td>
-          </tr>
+          <li>
+            <div>
+              <%= image_tag product.photo_url(:homepage) %>
+            </div>
+            <p><%= product.name %></p>
+            <p>$<%= product.unitprice %></p>
+          </li>
         <% end %>
       <% end %>
-    </tbody>
-  </table>
+    </ul>
+  </div>
 </div>
 
+<div class="home-login">
 <% unless user_signed_in? %>
-  <div class="home-login">
-    <%= link_to 'Login To Continue', home_path_url %>
-  </div>
+  <%= link_to 'Login To Continue', home_path_url %>
 <% else %>
   <%= link_to 'Main Products Page', products_path %>
 <% end %>
+</div>
