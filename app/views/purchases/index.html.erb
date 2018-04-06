@@ -33,3 +33,4 @@
 <br>
 
 <%= link_to 'Continue Shopping', products_path %>
+<%= link_to 'Checkout', controller: "charges", action: "new" , id: @purchases.first.cart.id%>
